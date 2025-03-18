@@ -1,10 +1,11 @@
 import os
+from openai import OpenAI
 import streamlit as st
 from langchain_community.document_loaders import TextLoader, PyPDFLoader, Docx2txtLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain.chat_models import ChatOpenAI
+# from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate, PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
@@ -16,7 +17,7 @@ load_dotenv()
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 
 # Initialize DeepSeek LLM and Embeddings
-deepseek_llm = ChatOpenAI(
+deepseek_llm = OpenAI(
     model="deepseek-chat",
     api_key=DEEPSEEK_API_KEY,
     base_url="https://api.deepseek.com"
