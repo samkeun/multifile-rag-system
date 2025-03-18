@@ -5,12 +5,16 @@ from langchain_community.document_loaders import TextLoader, PyPDFLoader, Docx2t
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
-# from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate, PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from dotenv import load_dotenv
+
+import ollama 
+from langchain_ollama import OllamaEmbeddings 
+
+
 
 # Load environment variables
 load_dotenv()
@@ -22,7 +26,7 @@ deepseek_llm = OpenAI(
     api_key=DEEPSEEK_API_KEY,
     base_url="https://api.deepseek.com"
 )
-deepseek_embeddings = OpenAIEmbeddings(
+deepseek_embeddings = OllamaEmbeddings(
     model="deepseek-embedding",
     openai_api_key=DEEPSEEK_API_KEY,
     openai_api_base="https://api.deepseek.com"
